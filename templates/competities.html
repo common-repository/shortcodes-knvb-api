@@ -1,0 +1,22 @@
+<table class="teams">
+{if="$data && $headers"}
+  <tr>
+    {if="$fields['comp id'] != 1"}         <th>{$headers[CompId]}</th>         {/if}
+    {if="$fields['comp name'] != 1"}       <th>{$headers[CompName]}</th>       {/if}
+    {if="$fields['class name'] != 1"}      <th>{$headers[ClassName]}</th>      {/if}
+    {if="$fields['team report naam'] != 1"} <th>{$headers[TeamReportNaam]}</th> {/if}
+  </tr>
+{/if}
+{loop="data"}
+  <tr>
+    {if="$fields['comp id'] != 1"}         <td width="25%" valign="top"><p>{$value->CompId}</p></td>         {/if}
+    {if="$fields['comp name'] != 1"}       <td width="25%" valign="top"><p>{$value->CompName}</p></td>       {/if}
+    {if="$fields['class name'] != 1"}      <td width="50%" valign="top"><p>{$value->ClassName}</p></td>      {/if}
+    {if="$fields['team report naam'] != 1"}<td width="50%" valign="top"><p>{$value->TeamReportNaam}</p></td> {/if}
+  </tr>
+{else}
+  <tr>
+    <td colspan="3">Momenteel zijn er geen teams beschikbaar.</td>
+  </tr>
+{/loop}
+</table>

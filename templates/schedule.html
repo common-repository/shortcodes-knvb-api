@@ -1,0 +1,28 @@
+<table class="schedule">
+{if="$data && $showheaders"}
+  <tr>
+    {if="$fields[datum] != 1"}          <th>{$headers[Datum]}</th>          {/if}
+    {if="$fields[tijd] != 1"}           <th>{$headers[Tijd]}</th>           {/if}
+    {if="$logo"}                        <th>{$headers[ThuisLogo]}</th>      {/if}
+    {if="$fields['thuis club'] != 1"}   <th>{$headers[ThuisClub]}</th>      {/if}
+    {if="$logo"}                        <th>{$headers[UitLogo]}</th>        {/if}
+    {if="$fields['uit club'] != 1"}     <th>{$headers[UitClub]}</th>        {/if}
+    {if="$fields[bijzonderheden] != 1"} <th>{$headers[Bijzonderheden]}</th> {/if}
+  </tr>
+{/if}
+{loop="$data"}
+  <tr>
+    {if="$fields[datum] != 1"}          <td class="date">{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>                                         {/if}
+    {if="$fields[tijd] != 1"}           <td class="time">{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>                                                                      {/if}
+    {if="$logo"}                        <td class="home-logo knvb-api-logo">{if="$value->ThuisLogo"}<img alt="Clublogo van {$value->ThuisClub}" src="{$value->ThuisLogo}" />{/if}</td> {/if}
+    {if="$fields['thuis club'] != 1"}   <td class="home-name">{$value->ThuisClub}</td>                                                                                                 {/if}
+    {if="$logo"}                        <td class="guest-logo knvb-api-logo">{if="$value->UitLogo"}<img alt="Clublogo van {$value->UitClub}" src="{$value->UitLogo}" />{/if}</td>      {/if}
+    {if="$fields['uit club'] != 1"}     <td class="guest-name">{$value->UitClub}</td>                                                                                                  {/if}
+    {if="$fields[bijzonderheden] != 1"} <td class="extra">{if="$value->Bijzonderheden"}{$value->Bijzonderheden}{/if}</td>                                                              {/if}
+  </tr>
+{else}
+  <tr>
+    <td class="nothing">Momenteel is er geen programma beschikbaar.</td>
+  </tr>
+{/loop}
+</table>

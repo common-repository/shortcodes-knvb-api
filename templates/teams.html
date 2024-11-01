@@ -1,0 +1,22 @@
+<table class="teams">
+{if="$data && $showheaders"}
+  <tr>
+    {if="$fields[teamid] != 1"}    <th>{$headers[teamid]}</th>    {/if}
+    {if="$fields[teamname] != 1"}  <th>{$headers[teamname]}</th>  {/if}
+    {if="$fields[categorie] != 1"} <th>{$headers[categorie]}</th> {/if}
+    {if="$fields[speeldag] != 1"}  <th>{$headers[speeldag]}</th>  {/if}
+  </tr>
+{/if}
+{loop="data"}
+  <tr>
+    {if="$fields[teamid] != 1"}    <td width="25%" valign="top"><p>{$value->teamid}</p></td>    {/if}
+    {if="$fields[teamname] != 1"}  <td width="25%" valign="top"><p>{$value->teamname}</p></td>  {/if}
+    {if="$fields[categorie] != 1"} <td width="50%" valign="top"><p>{$value->categorie}</p></td> {/if}
+    {if="$fields[speeldag] != 1"}  <td width="50%" valign="top"><p>{$value->speeldag}</p></td>  {/if}
+  </tr>
+{else}
+  <tr>
+    <td colspan="3">Momenteel zijn er geen teams beschikbaar.</td>
+  </tr>
+{/loop}
+</table>

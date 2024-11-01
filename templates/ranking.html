@@ -1,0 +1,73 @@
+<table class="ranking">
+{if="$data[0] == 'multipoules'"}  <!-- if there are rankings for multiple poules -->
+  {loop="$data"}
+    {if="$value != 'multipoules'"}
+      <tr>
+        <th colspan="8">Poule {$key}</th>
+      </tr>
+      {if="$data && $showheaders"}
+        <tr>
+          {if="$fields[positie] != 1"}  <th>{$headers[Positie]}</th>  {/if}
+          {if="$logo"}                  <th>{$headers[logo]}</th>     {/if}
+          {if="$fields[naam] != 1"}     <th>{$headers[naam]}</th>     {/if}
+          {if="$fields[gespeeld] != 1"} <th>{$headers[Gespeeld]}</th> {/if}
+          {if="$fields[gewonnen] != 1"} <th>{$headers[Gewonnen]}</th> {/if}
+          {if="$fields[gelijk] != 1"}   <th>{$headers[Gelijk]}</th>   {/if}
+          {if="$fields[verloren] != 1"} <th>{$headers[Verloren]}</th> {/if}
+          {if="$fields[punten] != 1"}   <th>{$headers[Punten]}</th>   {/if}
+          {if="$fields[goals] != 1"}    <th>Goals</th>                {/if}
+        </tr>
+      {/if}
+      {loop="$value"}
+        <tr{if="substr($value->naam, 0, 4) == 'VVZ '"} class="self"{/if}>
+          <!-- <td class="poule">{$value->pouleid}</td> -->
+          {if="$fields[positie] != 1"}    <td class="position">{$value->Positie}</td>                                                                                {/if}
+          {if="$logo"}                    <td class="logo knvb-api-logo">{if="$value->logo"}<img alt="Clublogo van {$value->naam}" src="{$value->logo}" />{/if}</td> {/if}
+          {if="$fields[naam] != 1"}       <td class="name">{$value->naam}</td>                                                                                       {/if}
+          {if="$fields[gespeeld] != 1"}   <td class="played" title="Gespeeld">{$value->Gespeeld}</td>                                                                {/if}
+          {if="$fields[gewonnen] != 1"}   <td class="won" title="Gewonnen">{$value->Gewonnen}</td>                                                                   {/if}
+          {if="$fields[gelijk] != 1"}     <td class="tie" title="Gelijk">{$value->Gelijk}</td>                                                                       {/if}
+          {if="$fields[verloren] != 1"}   <td class="lost" title="Verloren">{$value->Verloren}</td>                                                                  {/if}
+          {if="$fields[punten] != 1"}     <td class="points" title="Punten">{$value->Punten}</td>                                                                    {/if}
+          {if="$fields[goals] != 1"}      <td class="goals">({$value->DoelpuntenVoor} - {$value->DoelpuntenTegen})</td>                                              {/if}
+        </tr>
+        {else}
+        <tr>
+          <td class="nothing">Momenteel is er geen stand beschikbaar.</td>
+        </tr>
+      {/loop}
+    {/if}
+  {/loop}
+{else} <!-- if there are rankings for a single poule -->
+  {if="$data && $showheaders"}
+    <tr>
+      {if="$fields[positie] != 1"}  <th>{$headers[Positie]}</th>  {/if}
+      {if="$logo"}                  <th>{$headers[logo]}</th>     {/if}
+      {if="$fields[naam] != 1"}     <th>{$headers[naam]}</th>     {/if}
+      {if="$fields[gespeeld] != 1"} <th>{$headers[Gespeeld]}</th> {/if}
+      {if="$fields[gewonnen] != 1"} <th>{$headers[Gewonnen]}</th> {/if}
+      {if="$fields[gelijk] != 1"}   <th>{$headers[Gelijk]}</th>   {/if}
+      {if="$fields[verloren] != 1"} <th>{$headers[Verloren]}</th> {/if}
+      {if="$fields[punten] != 1"}   <th>{$headers[Punten]}</th>   {/if}
+      {if="$fields[goals] != 1"}    <th>Goals</th>                {/if}
+    </tr>
+  {/if}
+  {loop="$data"}
+    <tr{if="substr($value->naam, 0, 4) == 'VVZ '"} class="self"{/if}>
+      {if="$fields[positie] != 1"}  <td class="position">{$value->Positie}</td>                                                                                {/if}
+      {if="$logo"}                  <td class="logo knvb-api-logo">{if="$value->logo"}<img alt="Clublogo van {$value->naam}" src="{$value->logo}" />{/if}</td> {/if}
+      {if="$fields[naam] != 1"}     <td class="name">{$value->naam}</td>                                                                                       {/if}
+      {if="$fields[gespeeld] != 1"} <td class="played" title="Gespeeld">{$value->Gespeeld}</td>                                                                {/if}
+      {if="$fields[gewonnen] != 1"} <td class="won" title="Gewonnen">{$value->Gewonnen}</td>                                                                   {/if}
+      {if="$fields[gelijk] != 1"}   <td class="tie" title="Gelijk">{$value->Gelijk}</td>                                                                       {/if}
+      {if="$fields[verloren] != 1"} <td class="lost" title="Verloren">{$value->Verloren}</td>                                                                  {/if}
+      {if="$fields[punten] != 1"}   <td class="points" title="Punten">{$value->Punten}</td>                                                                    {/if}
+      {if="$fields[goals] != 1"}    <td class="goals">({$value->DoelpuntenVoor} - {$value->DoelpuntenTegen})</td>                                              {/if}
+    </tr>
+    {else}
+    <tr>
+      <td class="nothing">Momenteel is er geen stand beschikbaar.</td>
+    </tr>
+  {/loop}
+{/if}
+</table>

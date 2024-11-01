@@ -1,0 +1,23 @@
+{if="$wedstrijden"}
+  <table class="match_shortcodes">
+    <tr><td colspan="3"><h2>Shortcodes per wedstrijd</h2></td></tr>
+    <tr>
+      <th align="left">Wedstrijdnummer</th>
+      <th align="left">Teams</th>
+      <th align="left">Beschikbare shortcodes per wedstrijd</th>
+    </tr>
+    {loop="$wedstrijden"}
+     <tr>
+       <td width="25%" valign="top"><p>{$value->MatchID}</p></td>
+       <td width="25%" valign="top"><p>{$value->ThuisClub} - {$value->UitClub}</p></td>
+       <td width="50%" valign="top">
+         <pre>[knvb uri="/wedstrijd/{$value->MatchID}"]</pre>
+       </td>
+     </tr>
+    {else}
+      <tr>
+        <td colspan="3">Momenteel zijn er geen wedstrijden beschikbaar.</td>
+      </tr>
+    {/loop}
+  </table>
+{/if}

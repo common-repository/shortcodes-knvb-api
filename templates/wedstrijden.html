@@ -1,0 +1,164 @@
+{if="isset($thuis) || isset($uit)"}
+  {if="isset($thuis)"}
+    <table class="games thuis">
+      <tr>
+        <th class="home-title" colspan="{if="$logo"}9{else}7{/if}">Thuis</th>
+      </tr>
+      {if="$data && $showheaders"}
+        <tr>
+          {if="$fields[datum] != 1"}          <th>{$headers[Datum]}</th>          {/if}
+          {if="$fields[tijd] != 1"}           <th>{$headers[Tijd]}</th>           {/if}
+          {if="$logo"}                        <th>{$headers[ThuisLogo]}</th>      {/if}
+          {if="$fields[thuisclub] != 1"}      <th>{$headers[ThuisClub]}</th>      {/if}
+          {if="$logo"}                        <th>{$headers[UitLogo]}</th>        {/if}
+          {if="$fields[uitclub] != 1"}        <th>{$headers[UitClub]}</th>        {/if}
+          {if="$fields[score] != 1"}          <th>Score</th>                      {/if}
+          {if="$fields[spelsoort] != 1"}      <th>Spelsoort</th>                  {/if}
+          {if="$fields[bijzonderheden] != 1"} <th>{$headers[Bijzonderheden]}</th> {/if}
+        </tr>
+      {/if}
+      {loop="thuis"}
+        <tr>
+          {if="$fields[datum] != 1"}          <td class="date">{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>                                         {/if}
+          {if="$fields[tijd] != 1"}           <td class="time">{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>                                                                      {/if}
+          {if="$logo"}                        <td class="home-logo knvb-api-logo">{if="$value->ThuisLogo"}<img alt="Clublogo van {$value->ThuisClub}" src="{$value->ThuisLogo}" />{/if}</td> {/if}
+          {if="$fields[thuisclub] != 1"}      <td class="home-name">
+                                                {$value->ThuisClub}
+                                                {if="$thuisonly && $value->Kleedkamer_thuis"}
+                                                  <span class="kleedkamer"><span class="label">Kleedkamer:</span> {$value->Kleedkamer_thuis}</span>
+                                                {/if}
+                                              </td>                                                                                                                                          {/if}
+          {if="$logo"}                        <td class="guest-logo knvb-api-logo">{if="$value->UitLogo"}<img alt="Clublogo van {$value->UitClub}" src="{$value->UitLogo}" />{/if}</td>      {/if}
+          {if="$fields[uitclub] != 1"}        <td class="guest-name">
+                                                {$value->UitClub}
+                                                {if="$thuisonly && $value->Kleedkamer_uit"}
+                                                  <span class="kleedkamer"><span class="label">Kleedkamer:</span> {$value->Kleedkamer_uit}</span>
+                                                {/if}
+                                              </td>                                                                                                                                          {/if}
+          {if="$fields[score] != 1"}          <td class="points">{if="($value->PuntenTeam1)||($value->PuntenTeam2)"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>                  {/if}
+          {if="$fields[spelsoort] != 1"}      <td class="field">
+                                                <span class="zaalveld">{$value->Zaalveld}</span>
+                                                {if="$value->VeldClub"}
+                                                  &#32;
+                                                  <span class="veld">{$value->VeldClub}</span>
+                                                {elseif="!$value->VeldClub && $value->VeldKNVB"}
+                                                  &#32;
+                                                  <span class="veld">{$value->VeldKNVB}</span>
+                                                {/if}
+                                              </td>                                                                                                                                           {/if}
+          {if="$fields[bijzonderheden] != 1"} <td class="extra">
+                                                {if="$value->Bijzonderheden"}
+                                                  <span class="bijzonderheden">{$value->Bijzonderheden}</span>
+                                                {/if}
+                                              </td>                                                                                                                                           {/if}
+        </tr>
+      {else}
+        <tr>
+          <td class="nothing" colspan="{if="$logo"}9{else}7{/if}">Momenteel is er geen thuis-wedstrijdenoverzicht beschikbaar.</td>
+        </tr>
+      {/loop}
+    </table>
+  {/if}
+  {if="isset($uit)"}
+    <table class="games uit">
+      <tr>
+        <th class="home-title" colspan="{if="$logo"}9{else}7{/if}">Uit</th>
+      </tr>
+      {if="$data && $showheaders"}
+        <tr>
+          {if="$fields[datum] != 1"}          <th>{$headers[Datum]}</th>          {/if}
+          {if="$fields[tijd] != 1"}           <th>{$headers[Tijd]}</th>           {/if}
+          {if="$logo"}                        <th>{$headers[ThuisLogo]}</th>      {/if}
+          {if="$fields[thuisclub] != 1"}      <th>{$headers[ThuisClub]}</th>      {/if}
+          {if="$logo"}                        <th>{$headers[UitLogo]}</th>        {/if}
+          {if="$fields[uitclub] != 1"}        <th>{$headers[UitClub]}</th>        {/if}
+          {if="$fields[score] != 1"}          <th>Score</th>                      {/if}
+          {if="$fields[spelsoort] != 1"}      <th>Spelsoort</th>                  {/if}
+          {if="$fields[bijzonderheden] != 1"} <th>{$headers[Bijzonderheden]}</th> {/if}
+        </tr>
+      {/if}
+      {loop="uit"}
+        <tr>
+          {if="$fields[datum] != 1"}          <td class="date">{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>                                         {/if}
+          {if="$fields[tijd] != 1"}           <td class="time">{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>                                                                      {/if}
+          {if="$logo"}                        <td class="home-logo knvb-api-logo">{if="$value->ThuisLogo"}<img alt="Clublogo van {$value->ThuisClub}" src="{$value->ThuisLogo}" />{/if}</td> {/if}
+          {if="$fields[thuisclub] != 1"}      <td class="home-name">
+                                                {$value->ThuisClub}
+                                                {if="$uitonly && $value->Kleedkamer_thuis"}
+                                                  <span class="kleedkamer"><span class="label">Kleedkamer:</span> {$value->Kleedkamer_thuis}</span>
+                                                {/if}
+                                              </td>                                                                                                                                          {/if}
+          {if="$logo"}                        <td class="guest-logo knvb-api-logo">{if="$value->UitLogo"}<img alt="Clublogo van {$value->UitClub}" src="{$value->UitLogo}" />{/if}</td>      {/if}
+          {if="$fields[uitclub] != 1"}        <td class="guest-name">
+                                                {$value->UitClub}
+                                                {if="$uitonly && $value->Kleedkamer_uit"}
+                                                  <span class="kleedkamer"><span class="label">Kleedkamer:</span> {$value->Kleedkamer_uit}</span>
+                                                {/if}
+                                              </td>                                                                                                                                          {/if}
+          {if="$fields[score] != 1"}          <td class="points">{if="($value->PuntenTeam1)||($value->PuntenTeam2)"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>                  {/if}
+          {if="$fields[spelsoort] != 1"}      <td class="field">
+                                                <span class="zaalveld">{$value->Zaalveld}</span>
+                                                {if="$value->VeldClub"}
+                                                  &#32;
+                                                  <span class="veld">{$value->VeldClub}</span>
+                                                {elseif="!$value->VeldClub && $value->VeldKNVB"}
+                                                  &#32;
+                                                  <span class="veld">{$value->VeldKNVB}</span>
+                                                {/if}
+                                              </td>                                                                                                                                           {/if}
+          {if="$fields[bijzonderheden] != 1"} <td class="extra">
+                                                {if="$value->Bijzonderheden"}
+                                                  <span class="bijzonderheden">{$value->Bijzonderheden}</span>
+                                                {/if}
+                                              </td>                                                                                                                                           {/if}
+        </tr>
+      {else}
+        <tr>
+          <td class="nothing" colspan="{if="$logo"}9{else}7{/if}">Momenteel is er geen uit-wedstrijdenoverzicht beschikbaar.</td>
+        </tr>
+      {/loop}
+    </table>
+  {/if}
+{else}
+  <table class="games uit">
+    {if="$data && $showheaders"}
+      <tr>
+        {if="$headers[Datum]"}          <th>{$headers[Datum]}</th>          {/if}
+        {if="$headers[Tijd]"}           <th>{$headers[Tijd]}</th>           {/if}
+        {if="$logo"}                    <th>{$headers[ThuisLogo]}</th>      {/if}
+        {if="$headers[ThuisClub]"}      <th>{$headers[ThuisClub]}</th>      {/if}
+        {if="$logo"}                    <th>{$headers[UitLogo]}</th>        {/if}
+        {if="$headers[UitClub]"}        <th>{$headers[UitClub]}</th>        {/if}
+        {if="$fields[score] != 1"}      <th>Score</th>                      {/if}
+        {if="$fields[spelsoort] != 1"}  <th>Spelsoort</th>                  {/if}
+        {if="$headers[Bijzonderheden]"} <th>{$headers[Bijzonderheden]}</th> {/if}
+      </tr>
+    {/if}
+  {loop="data"}
+    <tr>
+      {if="$value->Datum"}          <td class="date">{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>                                         {/if}
+      {if="$value->Tijd"}           <td class="time">{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>                                                                      {/if}
+      {if="$logo"}                  <td class="home-logo knvb-api-logo">{if="$value->ThuisLogo"}<img alt="Clublogo van {$value->ThuisClub}" src="{$value->ThuisLogo}" />{/if}</td> {/if}
+      {if="$value->ThuisClub"}      <td class="home-name">{$value->ThuisClub}</td>                                                                                                 {/if}
+      {if="$logo"}                  <td class="guest-logo knvb-api-logo">{if="$value->UitLogo"}<img alt="Clublogo van {$value->UitClub}" src="{$value->UitLogo}" />{/if}</td>      {/if}
+      {if="$value->UitClub"}        <td class="guest-name">{$value->UitClub}</td>                                                                                                  {/if}
+      {if="$fields[score] != 1"}    <td class="points">{if="($value->PuntenTeam1)||($value->PuntenTeam2)"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>                  {/if}
+      {if="$fields[spelsoort] != 1"}<td class="field">
+                                      <span class="zaalveld">{$value->Zaalveld}</span>
+                                      {if="$value->VeldClub"}
+                                        &#32;
+                                        <span class="veld">{$value->VeldClub}</span>
+                                      {elseif="!$value->VeldClub && $value->VeldKNVB"}
+                                        &#32;
+                                        <span class="veld">{$value->VeldKNVB}</span>
+                                      {/if}
+                                    </td>                                                                                                                                          {/if}
+      {if="$value->Bijzonderheden"} <td class="extra">{if="$value->Bijzonderheden"}{$value->Bijzonderheden}{/if}</td>                                                              {/if}
+    </tr>
+  {else}
+    <tr>
+      <td class="nothing">Momenteel is er geen wedstrijdenoverzicht beschikbaar.</td>
+    </tr>
+  {/loop}
+  </table>
+{/if}

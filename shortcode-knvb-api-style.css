@@ -1,0 +1,21 @@
+.api-status {
+  width: 15px;
+  height: 15px;
+  border-radius: 90%;
+}
+#api-status-green {
+  background-color: green;
+}
+#api-status-red {
+  background-color: red;
+}
+.hidden {
+  display: none !important;
+}
+.knvb-api-logo {
+  text-align: center;
+}
+.knvb-api-logo img {
+  max-height: 50px;
+  max-width: 50px;
+}
